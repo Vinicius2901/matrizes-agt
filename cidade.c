@@ -1,49 +1,53 @@
 #include <stdio.h>
 
-#define Lin 4
-#define Col 12
+#define L 4
+#define C 12
 
 int main()
 {
-    float cidade[Lin][Col];
+    double cidade[L][C];
     int i = 0, j = 0, contMais200 = 0;
-    float mediamax, mediamed, mediamin, medMais200;
-    for (i = 0; i < Lin; i++)
+    double mediamax = 0, mediamed = 0, mediamin = 0, medMais200 = 0, somaMais200 = 0;
+    for (i = 0; i < L; i++)
     {
-        for (j = 0; j < Col; j++)
+        for (j = 0; j < C; j++)
         {
-            scanf(" %f", &cidade[i][j]);
+            scanf(" %lf", &cidade[i][j]);
         }
     }
-    for (i = 0; i < Lin; i++)
+    for (i = 0; i < L; i++)
     {
-        for (j = 0; j < Col; j++)
+        for (j = 0; j < C; j++)
         {
             switch (i)
             {
             case 0:
-                mediamax += cidade[i][j]/j;
+                mediamax += cidade[i][j]/C;
                 break;
             
             case 1:
-                mediamed += cidade[i][j]/j;
+                mediamed += cidade[i][j]/C;
                 break;
 
             case 2:
-                mediamin += cidade[i][j];
+                mediamin += cidade[i][j]/C;
                 break;
 
             case 3:
                 if (cidade[i][j] > 200)
                 {
                     contMais200++;
-                    medMais200 += cidade[1][j]/contMais200;
+                    somaMais200 += cidade[1][j];
                 }
             default:
                 break;
             }
         }
     }
-    printf("Media Máxima: %.1f", mediamax);
+    medMais200 = somaMais200/contMais200;
+    printf("\nMedia Maxima: %.1lf\n", mediamax);
+    printf("\nMedia media: %.1lf\n", mediamed);
+    printf("\nMedia Minima: %.1lf\n", mediamin);
+    printf("\nTemp media precipitacao: %.1lf\n", medMais200);
     return 0;
 }
