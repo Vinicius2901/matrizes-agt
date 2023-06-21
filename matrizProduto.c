@@ -1,62 +1,58 @@
 #include <stdio.h>
 
-#define T 3
-
 int main()
 {
-    int matriz1[T][T];
-    int matriz2[T][T];
-    int resultante[T][T];
-    int i, j, aux1 = 0, aux2 = 0;
-    printf("Digite os elementos da primeira matriz: \n");
-    for (i = 0; i < T; i++)
+    int n, p, x, y, i, j, k;
+    printf ("Digite a quantidade de linhas e colunas da primeira matriz: ");
+    scanf("%i %i", &n, &p);
+    printf("Digite a quantidade de linhas e colunas da segunda matriz: ");
+    scanf("%i %i", &x, &y);
+    int A[n][p];
+    int B[x][y];
+    int AB[n][y];
+    if (p != x)
     {
-        for (j = 0; j < T; j++)
+        printf("Não ha produto entre as matrizes.\n");
+        return 0;
+    }
+    else
+    {
+        printf("Digite os termos da primeira matriz: \n");
+        for (i = 0; i < n; i++)
         {
-            scanf(" %i", &matriz1[i][j]);
-            resultante[i][j] = 0;
+            for (j = 0; j < p; j++)
+            {
+                scanf("%i", &A[i][j]);
+            }
+        }
+        printf("Digite os termos da segunda matriz: \n");
+        for (i = 0; i < x; i++)
+        {
+            for (j = 0; j < y; j++)
+            {
+                scanf("%i", &B[i][j]);
+            }
+        }
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j < y; j++)
+            {
+                AB[i][j] = 0;
+                for (k = 0; k < p; k++)
+                {
+                    AB[i][j] += A[i][k]*B[k][j];
+                }
+            }
+        }
+        printf("Matriz resultante: \n");
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j < y; j++)
+            {
+                printf("%i ", AB[i][j]);
+            }
+            printf("\n");
         }
     }
-    printf("Digite os elementos da segunda matriz: \n");
-    for (i = 0; i < T; i++)
-    {
-        for (j = 0; j < T; j++)
-        {
-            scanf(" %i", &matriz2[i][j]);
-        }
-    }
-    printf("Matriz resultante da multiplicacao: \n");
-    /*for (i = 0; i < T; i++)
-    {
-        for (j = 0; j < T; j++)
-        {
-            resultante[i][j] += matriz1[i][j] * matriz2[j][i];
-            printf("%i ", resultante[i][j]);
-        }
-        printf("\n");
-    }*/
-    i = 0;
-    while (i < T)
-    {
-        for (j = 0; j < T; j++)
-        {
-            resultante[i][aux1] += matriz1[i][j]*matriz2[j][aux1];
-        }
-        if (aux1 == T-1)
-        {
-            i++;
-            aux1 = -1;
-        }
-        aux1++;
-    }
-    for (i = 0; i < T; i++)
-    {
-        for (j = 0; j < T; j++)
-        {
-            printf("%i ", resultante[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
     return 0;
 }
